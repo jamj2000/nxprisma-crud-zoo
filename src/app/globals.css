@@ -70,6 +70,11 @@ nav a {
 }
 
 nav a:hover {
+  background-color: darkblue ;
+  color: white;
+}
+
+nav a.item-selected {
   background-color: black;
   color: white;
 }

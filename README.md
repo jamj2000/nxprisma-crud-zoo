@@ -7,7 +7,7 @@ En el esquema se declaran 2 modelos:
 - Zoo
 - Animal
 
-Entre ambos existe una relación 1:N (uno a muchos).
+Entre ambos existe una **relación 1:N (uno a muchos)**.
 
 Esta aplicación también permite gestionar los animales asociados a un zoo.
 
