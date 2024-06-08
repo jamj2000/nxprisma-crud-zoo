@@ -5,6 +5,7 @@
   --radius: 5px;
 }
 
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -139,6 +140,49 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+.esqueleto-zoo {
+  --alto: 170px;
+}
+
+.esqueleto-animal {
+  --alto: 140px;
+}
+
+.esqueleto-zoo:empty, .esqueleto-animal:empty {
+  margin: 12px 0;
+  border: var(--border);
+  border-radius: var(--radius);
+  height: var(--alto);
+  position: relative;
+  background-color: #ffffff;
+  background-image: linear-gradient(var(--bglight) var(--alto), transparent 0);
+  background-repeat: repeat-y;
+  background-size: 100% var(--alto);
+}
+
+.esqueleto-zoo:empty:before, .esqueleto-animal:empty:before {
+  content: ' ';
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: var(--alto);
+  mask-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
+  mask-repeat: repeat-y;
+  mask-size: 50px var(--alto);
+  mask-position: 20% 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 1) var(--alto), transparent 0);
+  background-repeat: repeat-y;
+  background-size: 100% var(--alto);
+  animation: shimmerEsqueletoZoo 2s infinite;
+}
+
+@keyframes shimmerEsqueletoZoo {
+  to {
+    -webkit-mask-position: 120% 0
+  }
+}
+
 
 
 @media (width <= 800px)  {
