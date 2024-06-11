@@ -49,8 +49,7 @@ export async function newAnimal(formData) {
   try {
     const nombre = formData.get('nombre')
     const especie = formData.get('especie')
-    const zooId = Number(formData.get('zooId'))
-
+    const zooId = formData.get('zooId') && Number(formData.get('zooId') )  // Este valor puede ser nulo
 
     const animal = await prisma.animal.create({
       data: { nombre, especie, zooId },
@@ -70,7 +69,7 @@ export async function editAnimal(formData) {
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   const especie = formData.get('especie')
-  const zooId = Number(formData.get('zooId'))
+  const zooId =  formData.get('zooId') && Number(formData.get('zooId') )  // Este valor puede ser nulo
 
   // Array con IDs de todos los zoos
   const ids = await getZoosIds()
