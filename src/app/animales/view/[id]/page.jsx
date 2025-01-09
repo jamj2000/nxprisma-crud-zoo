@@ -1,11 +1,11 @@
 import Form from "@/components/FormAnimal"
-import Button from "@/components/Button"
 import prisma from '@/lib/prisma'
-import { deleteAnimal } from "@/lib/actions"
+import { getAnimal } from "@/lib/actions"
 
 export const dynamic = 'force-dynamic'
 
-async function page({ params }) {
+async function page(props) {
+  const params = await props.params;
   const animal = await prisma.animal.findUnique({
     where: {
       id: Number(params.id),
@@ -14,9 +14,8 @@ async function page({ params }) {
 
   return (
     <div>
-      <h3>Eliminar animal</h3>
-      <Form action={deleteAnimal} animal={animal} disabled={true} >
-        <Button title='Eliminar animal' />
+      <h3>Ver animal</h3>
+      <Form action={getAnimal} animal={animal} disabled={true} >
       </Form>
     </div>
   )

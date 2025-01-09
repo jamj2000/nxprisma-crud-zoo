@@ -62,7 +62,6 @@ const load = async () => {
         });
         console.log('Añadidos datos a tabla animales');
 
-
     } catch (e) {
         console.error(e);
         process.exit(1);
