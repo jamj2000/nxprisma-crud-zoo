@@ -1,55 +1,17 @@
 'use server'
 import prisma from '@/lib/prisma'
+import { getZoosIds } from '@/lib/data';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
-
-
-// Obtener array con IDs de todos los zoos
-async function getZoosIds() {
-  const zoosIds = await prisma.zoo.findMany({
-    select: { id: true }
-  })
-  return zoosIds.map(zoo => zoo.id)
-}
 
 
 
-// ANIMALES
-
-export async function getAnimales() {
-  try {
-    const animales = await prisma.animal.findMany()
-    console.log(animales);
-    return animales;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-}
 
 
-export async function getAnimal(id) {  // obtener animales con su zoo
-  try {
-    const animal = await prisma.animal.findUnique({
-      where: { id },
-      include: { zoo: true  }
-    })
-
-    console.log(animal);
-    return animal;
-  } catch (error) {
-    // console.log(error);  
-    return null;
-  }
-}
-
-
-
-export async function newAnimal(formData) {
+export async function createAnimal(prevState, formData) {
   try {
     const nombre = formData.get('nombre')
     const especie = formData.get('especie')
-    const zooId = formData.get('zooId') && Number(formData.get('zooId') )  // Este valor puede ser nulo
+    const zooId = formData.get('zooId') && Number(formData.get('zooId'))  // Este valor puede ser nulo
 
     const animal = await prisma.animal.create({
       data: { nombre, especie, zooId },
@@ -57,19 +19,23 @@ export async function newAnimal(formData) {
 
     console.log(animal);
     revalidatePath('/animales')
+    return { success: 'Operación realizada con éxito' }
+
   } catch (error) {
     console.log(error);
+    return { error: 'Fallo al realizar la operación' }
+
   }
-  redirect('/animales');
+
 }
 
 
 
-export async function editAnimal(formData) {
+export async function updateAnimal(prevState, formData) {
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   const especie = formData.get('especie')
-  const zooId =  formData.get('zooId') && Number(formData.get('zooId') )  // Este valor puede ser nulo
+  const zooId = formData.get('zooId') && Number(formData.get('zooId'))  // Este valor puede ser nulo
 
   // Array con IDs de todos los zoos
   const ids = await getZoosIds()
@@ -78,19 +44,23 @@ export async function editAnimal(formData) {
   try {
     const animal = await prisma.animal.update({
       where: { id },
-      data: {  nombre, especie, zooId },
+      data: { nombre, especie, zooId },
     })
 
     console.log(animal);
     revalidatePath('/animales')
+    return { success: 'Operación realizada con éxito' }
+
   } catch (error) {
     console.log(error);
+    return { error: 'Fallo al realizar la operación' }
+
   }
-  redirect('/animales');
+
 }
 
 
-export async function deleteAnimal(formData) {
+export async function deleteAnimal(prevState, formData) {
   try {
     const id = Number(formData.get('id'))
 
@@ -99,47 +69,21 @@ export async function deleteAnimal(formData) {
     })
     console.log(animal);
     revalidatePath('/animales')
+    return { success: 'Operación realizada con éxito' }
+
   } catch (error) {
     console.log(error);
+    return { error: 'Fallo al realizar la operación' }
+
   }
 
-  redirect('/animales');
+
 }
 
 
 
-// ZOOS
 
-export async function getZoos() {
-  try {
-    const zoos = await prisma.zoo.findMany()
-    return zoos;
-  } catch (error) {
-    // console.log(error);  
-    return null;
-  }
-}
-
-
-
-export async function getZoo(id) {  // obtener zoo con animales
-  try {
-    const zoo = await prisma.zoo.findUnique({
-      where: { id },
-      include: { animales: true  }
-    })
-
-    console.log(zoo);
-    return zoo;
-  } catch (error) {
-    // console.log(error);  
-    return null;
-  }
-}
-
-
-
-export async function newZoo(formData) {
+export async function createZoo(prevState, formData) {
   try {
     const nombre = formData.get('nombre')
     let pais = formData.get('pais')
@@ -151,15 +95,18 @@ export async function newZoo(formData) {
 
     console.log(zoo);
     revalidatePath('/zoos')
+    return { success: 'Operación realizada con éxito' }
+
   } catch (error) {
     console.log(error);
+    return { error: 'Fallo al realizar la operación' }
+
   }
-  redirect('/zoos');
 }
 
 
 
-export async function editZoo(formData) {
+export async function updateZoo(prevState, formData) {
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   let pais = formData.get('pais')
@@ -172,15 +119,18 @@ export async function editZoo(formData) {
     })
     console.log(zoo);
     revalidatePath('/zoos')
+    return { success: 'Operación realizada con éxito' }
   } catch (error) {
     console.log(error);
+    return { error: 'Fallo al realizar la operación' }
+
   }
-  redirect('/zoos');
+
 }
 
 
 
-export async function deleteZoo(formData) {
+export async function deleteZoo(prevState, formData) {
   try {
     const id = Number(formData.get('id'))
 
@@ -189,10 +139,13 @@ export async function deleteZoo(formData) {
     })
     console.log(zoo);
     revalidatePath('/zoos')
+    return { success: 'Operación realizada con éxito' }
+
   } catch (error) {
     console.log(error);
+    return { error: 'Fallo al realizar la operación' }
+
   }
 
-  redirect('/zoos');
 }
 

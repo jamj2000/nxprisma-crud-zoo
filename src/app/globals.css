@@ -1,208 +1,36 @@
+@import "tailwindcss";
+
 :root {
-  --border: 1px solid lightgrey;
-  --bglight: rgb(248, 248, 248);
-  --bgdark: rgb(19, 19, 246);
-  --radius: 5px;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
-html,
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  min-height: 100vh; 
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-main {
-  width: 800px;
-  margin: 30px auto;
-}
 
-hr, p {
-  margin-bottom: 10px;
-}
-
-.card {
-  border: var(--border);
-  padding: 20px 50px;  
-  background-color: var(--bglight);
-  border-radius: var(--radius);
-  margin: 12px 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-a.enlace {
-  text-decoration: none;
-  color: rgb(93, 90, 90);
-  border: solid 1px lightgray;
-  background-color: var(--bglight);
-  margin: 2px;
-  padding: 8px 20px;
-  border-radius: 5px;
-  display: inline-block;
-  text-align: right;
-}
-
-a.enlace:hover {
-  color: var(--bglight);
-  background-color: var(--bgdark);
-  box-shadow: 0px 0px 4px gray;
-}
-
-a.enlace img {
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-nav a {
-  color: inherit;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-nav a:hover {
-  background-color: darkblue ;
+button[type=submit] {
+  padding-inline: 20px;
+  padding-block: 10px;
+  background-color: cornflowerblue;
   color: white;
-}
-
-nav a.item-selected {
-  background-color: black;
-  color: white;
-}
-
-nav, footer {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color: #f0f8ff;;
-  color: darkblue;
-  padding: 5px 10px;
-}
-
-nav div {
-  display: flex;
-  gap: 20px;
-}
-
-section {
-  padding: 20px;
-}
-
-section.not-found img {
-  aspect-ratio: 1;
-  width: 30vw;
-  display: block;
-  margin: 0 auto;
-}
-
-fieldset {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  border: var(--border);
-  border-radius: var(--radius);
-  background-color: var(--bglight);
-}
-
-legend {
-  font-weight: 700;
-}
-
-select {
-  line-height: 20px;
-  font-size: 24px;
-  padding: 10px;
-}
-
-option {
-  line-height: 20px;
-  font-size: 24px;
-  padding: 10px;
-  background: #dfe7ff;
-  color:#4e46e5;
-}
-
-
-input, button {
-  margin: 5px 0;
-  padding: 10px;
+  cursor: pointer;
   border-radius: 4px;
-  border: solid 1px lightgray;
-  font-size: inherit;
-}
-
-input[type=checkbox] {
-  margin-right: 8px;
-}
-
-button:hover {
-  background-color: var(--bgdark);
-  color: var(--bglight);
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.esqueleto-zoo {
-  --alto: 170px;
-}
-
-.esqueleto-animal {
-  --alto: 140px;
-}
-
-.esqueleto-zoo:empty, .esqueleto-animal:empty {
-  margin: 12px 0;
-  border: var(--border);
-  border-radius: var(--radius);
-  height: var(--alto);
-  position: relative;
-  background-color: #ffffff;
-  background-image: linear-gradient(var(--bglight) var(--alto), transparent 0);
-  background-repeat: repeat-y;
-  background-size: 100% var(--alto);
-}
-
-.esqueleto-zoo:empty:before, .esqueleto-animal:empty:before {
-  content: ' ';
-  position: absolute;
-  z-index: 1000;
-  width: 100%;
-  height: var(--alto);
-  mask-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
-  mask-repeat: repeat-y;
-  mask-size: 50px var(--alto);
-  mask-position: 20% 0;
-  background-image: linear-gradient(rgba(255, 255, 255, 1) var(--alto), transparent 0);
-  background-repeat: repeat-y;
-  background-size: 100% var(--alto);
-  animation: shimmerEsqueletoZoo 2s infinite;
-}
-
-@keyframes shimmerEsqueletoZoo {
-  to {
-    -webkit-mask-position: 120% 0
-  }
-}
-
-
-
-@media (width <= 800px)  {
-  main {
-    width: 100%;
-    margin: 20px 0;
-  }
 }
