@@ -1,4 +1,4 @@
-import Animal from '@/components/animals/item'
+import Animal from '@/components/animales/item'
 import { getAnimal } from '@/lib/data'
 import { notFound } from 'next/navigation'
 
