@@ -1,11 +1,12 @@
 import { Suspense } from 'react'
-import { getAnimales } from '@/lib/data'
+import { getAnimales, getZoos } from '@/lib/data'
 import ListaAnimales from '@/components/animales/lista'
 
 
 
 export default function Home() {
     const animales = getAnimales()
+    const zoos = getZoos()
 
     return (
         <section>
@@ -13,7 +14,7 @@ export default function Home() {
             <hr />
 
             <Suspense fallback="Recuperando datos...">
-                <ListaAnimales animales={animales} />
+                <ListaAnimales animales={animales} zoos={zoos} />
             </Suspense>
         </section>
     )

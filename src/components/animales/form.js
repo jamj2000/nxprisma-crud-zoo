@@ -1,7 +1,7 @@
 'use client'
 import { useActionState, useEffect, useId } from "react"
 
-function Form({ action, title, animal, disabled = false }) {
+function Form({ action, title, animal, zoos, disabled = false }) {
 
     const formId = useId()
     const [state, faction, pending] = useActionState(action, {})
@@ -30,6 +30,19 @@ function Form({ action, title, animal, disabled = false }) {
                     placeholder='Especie'
                     defaultValue={animal?.especie} />
 
+            </fieldset>
+
+            <fieldset disabled={disabled}>
+                <legend>Zoos</legend>
+                {zoos?.map((zoo) => (
+                    <div key={zoo.id}>
+                        {animal?.zoo?.id == zoo.id
+                            ? <input type='radio' name='zooId' value={zoo.id} defaultChecked />
+                            : <input type='radio' name='zooId' value={zoo.id} />
+                        }
+                        {zoo.nombre}
+                    </div>
+                ))}
             </fieldset>
 
             <button type='submit' autoFocus>{title}</button>

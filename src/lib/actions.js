@@ -76,8 +76,6 @@ export async function deleteAnimal(prevState, formData) {
     return { error: 'Fallo al realizar la operación' }
 
   }
-
-
 }
 
 

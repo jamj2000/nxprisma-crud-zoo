@@ -8,7 +8,7 @@ const zoos = [
         hectareas: 110.22,
     },
     {
-        nombre: 'Zoológico de Amsterdand',
+        nombre: 'Zoológico de Amsterdam',
         pais: 'Países bajos',
         hectareas: 20.12,
     },
@@ -54,6 +54,8 @@ const load = async () => {
         });
         console.log('Añadidos datos a tabla zoos');
 
+        // await prisma.$queryRaw`ALTER SEQUENCE animales_id_seq RESTART WITH 1`;
+        // console.log('reset animales sequence to 1');
         await prisma.animal.deleteMany({});
         console.log('Borrados los registros de la tabla animales');
 
