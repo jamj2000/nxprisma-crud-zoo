@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "postinstall": "prisma generate",
+    "seed": "node ./prisma/seed.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",

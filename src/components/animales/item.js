@@ -8,6 +8,7 @@ function Animal({ children, animal }) {
                 <strong>{animal.nombre}</strong>
             </Link>
             <p>{animal.especie}</p>
+            <p>{animal.zoo?.nombre}</p>
             <div className="mt-4 flex gap-4 justify-end">
                 {children}
             </div>

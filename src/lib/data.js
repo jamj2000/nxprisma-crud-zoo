@@ -15,7 +15,9 @@ export async function getZoosIds() {
 
 export async function getAnimales() {
     try {
-        const animales = await prisma.animal.findMany()
+        const animales = await prisma.animal.findMany({
+            include: { zoo: true }
+        })
         console.log(animales);
         return animales;
     } catch (error) {
