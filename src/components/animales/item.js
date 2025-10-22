@@ -4,7 +4,7 @@ import Link from "next/link"
 function Animal({ children, animal }) {
     return (
         <div className="border border-slate-200 bg-slate-100 w-80 p-8 rounded">
-            <Link prefetch href={`/animals/${animal.id}`}>
+            <Link prefetch href={`/animales/${animal.id}`}>
                 <strong>{animal.nombre}</strong>
             </Link>
             <p>{animal.especie}</p>
