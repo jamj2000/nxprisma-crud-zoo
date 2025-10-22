@@ -45,7 +45,7 @@ function Form({ action, title, animal, zoos, disabled = false }) {
                 ))}
             </fieldset>
 
-            <button type='submit' autoFocus>{title}</button>
+            <button type='submit' autoFocus>{pending ? 'Actualizando info' : title}</button>
         </form>
     )
 }

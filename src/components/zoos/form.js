@@ -40,7 +40,7 @@ function Form({ action, title, zoo, disabled = false }) {
                     defaultValue={zoo?.hectareas} />
             </fieldset>
 
-            <button type='submit' autoFocus>{title}</button>
+            <button type='submit' autoFocus>{pending ? 'Actualizando info' : title}</button>
         </form>
     )
 }
