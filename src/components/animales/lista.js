@@ -1,16 +1,14 @@
-'use client'
-import { use } from "react"
-
 import Modal from "@/components/modal"
 import Form from "@/components/animales/form"
 import Animal from "@/components/animales/item"
 
 import { createAnimal, updateAnimal, deleteAnimal } from "@/lib/actions"
+import { getAnimales, getZoos } from "@/lib/data"
 
 
-function ListaAnimales({ animales, zoos }) {
-    const listaAnimales = use(animales)
-    const listaZoos = use(zoos)
+async function ListaAnimales() {
+    const listaAnimales = await getAnimales()
+    const listaZoos = await getZoos()
 
     return (
         <>

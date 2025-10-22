@@ -1,11 +1,9 @@
 import { Suspense } from 'react'
-import { getZoos } from '@/lib/data'
 import ListaZoos from '@/components/zoos/lista'
 
 
 
 export default function Home() {
-    const zoos = getZoos()
 
     return (
         <section>
@@ -13,7 +11,7 @@ export default function Home() {
             <hr />
 
             <Suspense fallback="Recuperando datos...">
-                <ListaZoos zoos={zoos} />
+                <ListaZoos />
             </Suspense>
         </section>
     )

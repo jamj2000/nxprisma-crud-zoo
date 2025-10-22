@@ -32,21 +32,38 @@ function Form({ action, title, animal, zoos, disabled = false }) {
 
             </fieldset>
 
-            <fieldset disabled={disabled}>
-                <legend>Zoos</legend>
-                {zoos?.map((zoo) => (
-                    <div key={zoo.id}>
-                        {animal?.zoo?.id == zoo.id
-                            ? <input type='radio' name='zooId' value={zoo.id} defaultChecked />
-                            : <input type='radio' name='zooId' value={zoo.id} />
-                        }
-                        {zoo.nombre}
-                    </div>
-                ))}
-            </fieldset>
+            {/* {disabled ? <p>{animal?.zoo?.nombre}</p> : (
+                <fieldset>
+                    <legend>Zoos</legend>
+                    {zoos?.map((zoo) => (
+                        <div key={zoo.id}>
+                            {animal?.zoo?.id == zoo.id
+                                ? <input type='radio' name='zooId' value={zoo.id} defaultChecked />
+                                : <input type='radio' name='zooId' value={zoo.id} />
+                            }
+                            {zoo.nombre}
+                        </div>
+                    ))}
+                </fieldset>
+            )
+            } */}
+
+            <p className="mb-4">{animal?.zoo?.nombre}</p>
+
+            {!disabled
+                &&
+                <fieldset className="p-4 bg-slate-200 mb-4">
+                    <legend>Elige nuevo zoológico</legend>
+                    {zoos?.map((zoo) => (
+                        <label key={zoo.id} className="block">
+                            <input type='radio' name='zooId' value={zoo.id} />  {zoo.nombre}
+                        </label>
+                    ))}
+                </fieldset>
+            }
 
             <button type='submit' autoFocus>{pending ? 'Actualizando info' : title}</button>
-        </form>
+        </form >
     )
 }
 

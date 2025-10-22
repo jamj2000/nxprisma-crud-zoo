@@ -1,15 +1,13 @@
-'use client'
-import { use } from "react"
-
 import Modal from "@/components/modal"
 import Form from "@/components/zoos/form"
 import Zoo from "@/components/zoos/item"
 
 import { createZoo, updateZoo, deleteZoo } from "@/lib/actions"
+import { getZoos } from "@/lib/data"
 
 
-function ListaZoos({ zoos }) {
-    const lista = use(zoos)
+async function ListaZoos() {
+    const listaZoos = await getZoos()
 
     return (
         <>
@@ -18,7 +16,7 @@ function ListaZoos({ zoos }) {
             </Modal>
 
             <div className="flex flex-wrap gap-4">
-                {lista.map((zoo) => (
+                {listaZoos.map((zoo) => (
                     <Zoo key={zoo.id} zoo={zoo} >
                         <Modal openElement={"EDITAR"}>
                             <Form action={updateZoo} title={"Actualizar zoo"} zoo={zoo} />

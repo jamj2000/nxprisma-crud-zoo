@@ -1,6 +1,5 @@
 'use server'
 import prisma from '@/lib/prisma'
-import { getZoosIds } from '@/lib/data';
 import { revalidatePath } from 'next/cache';
 
 
@@ -37,9 +36,6 @@ export async function updateAnimal(prevState, formData) {
   const especie = formData.get('especie')
   const zooId = formData.get('zooId') && Number(formData.get('zooId'))  // Este valor puede ser nulo
 
-  // Array con IDs de todos los zoos
-  const ids = await getZoosIds()
-  console.log('IDs ', ids);
 
   try {
     const animal = await prisma.animal.update({
