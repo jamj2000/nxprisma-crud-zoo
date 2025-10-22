@@ -30,7 +30,7 @@ export async function getAnimales() {
 export async function getAnimal(id) {  // obtener animales con su zoo
     try {
         const animal = await prisma.animal.findUnique({
-            where: { id },
+            where: { id: Number(id) },
             include: { zoo: true }
         })
 
@@ -62,7 +62,7 @@ export async function getZoos() {
 export async function getZoo(id) {  // obtener zoo con animales
     try {
         const zoo = await prisma.zoo.findUnique({
-            where: { id },
+            where: { id: Number(id) },
             include: { animales: true }
         })
 
