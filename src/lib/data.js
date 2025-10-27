@@ -50,6 +50,7 @@ export async function getAnimal(id) {  // obtener animales con su zoo
 export async function getZoos() {
     try {
         const zoos = await prisma.zoo.findMany()
+        await new Promise(resolve => setTimeout(resolve, 2000))
         return zoos;
     } catch (error) {
         // console.log(error);  

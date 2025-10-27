@@ -32,13 +32,13 @@ function Form({ action, title, animal, zoos, disabled = false }) {
 
             </fieldset>
 
-            {/* {disabled ? <p>{animal?.zoo?.nombre}</p> : (
+            {disabled ? <p>{animal?.zoo?.nombre}</p> : (
                 <fieldset>
                     <legend>Zoos</legend>
                     {zoos?.map((zoo) => (
                         <div key={zoo.id}>
                             {animal?.zoo?.id == zoo.id
-                                ? <input type='radio' name='zooId' value={zoo.id} defaultChecked />
+                                ? <input key={`radio-${zoo.id}`} type='radio' name='zooId' value={zoo.id} defaultChecked />
                                 : <input type='radio' name='zooId' value={zoo.id} />
                             }
                             {zoo.nombre}
@@ -46,10 +46,11 @@ function Form({ action, title, animal, zoos, disabled = false }) {
                     ))}
                 </fieldset>
             )
-            } */}
+            }
 
+            {/*
             <p className="mb-4">{animal?.zoo?.nombre}</p>
-
+          
             {!disabled
                 &&
                 <fieldset className="p-4 bg-slate-200 mb-4">
@@ -60,9 +61,9 @@ function Form({ action, title, animal, zoos, disabled = false }) {
                         </label>
                     ))}
                 </fieldset>
-            }
+            } */}
 
-            <button type='submit' autoFocus>{pending ? 'Actualizando info' : title}</button>
+            <button type='submit' className={`${pending} ? 'animate-pulse' : ''`} autoFocus>{pending ? 'Actualizando info' : title}</button>
         </form >
     )
 }
