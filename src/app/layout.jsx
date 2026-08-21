@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
 
         <Navbar />
 
-        <main className='grow p-4'>
+        <main className='grow p-4 container mx-auto'>
           {children}
         </main>
 
