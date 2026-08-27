@@ -1,17 +1,18 @@
 {
-    "theme_color": "#2e30a1",
-    "background_color": "#3e586f",
+    "theme_color": "#c9d8f2",
+    "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
     "name": "Zoo CRUD",
-    "short_name": "zoo",
+    "short_name": "Zoo",
     "description": "NextJS app with ORM Prisma",
     "icons": [
         {
             "src": "/icon-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "/icon-256x256.png",
@@ -26,7 +27,14 @@
         {
             "src": "/icon-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-512x512-maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         }
     ]
 }
