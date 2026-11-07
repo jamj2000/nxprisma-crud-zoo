@@ -4,6 +4,7 @@ import { Button, CardZoo, FormZoo } from '../components'
 import { deleteZoo, updateZoo } from '../actions'
 import Modal from '@/components/modal'
 import { Suspense } from 'react'
+import { getAnimalesIdNombre } from '@/app/animales/data'
 
 
 export default function Page({ params }) {
@@ -23,7 +24,13 @@ export default function Page({ params }) {
 
 async function Content({ params }) {
     const { id } = await params
-    const zoo = await getZoo(id)
+    const [
+        zoo,
+        animalesIdNombre
+    ] = await Promise.all([
+        getZoo(id),
+        getAnimalesIdNombre()
+    ])
 
     if (!zoo) notFound()
 
@@ -32,12 +39,12 @@ async function Content({ params }) {
 
             <Modal trigger={<Button>EDITAR</Button>}>
                 <h2 className='text-2xl'>MODIFICAR ZOOLÓGICO</h2>
-                <FormZoo action={updateZoo} title={"Actualizar zoológico"} zoo={zoo} />
+                <FormZoo action={updateZoo} title={"Actualizar zoológico"} zoo={zoo} animalesIdNombre={animalesIdNombre} />
             </Modal>
 
             <Modal trigger={<Button>ELIMINAR</Button>}>
                 <h2 className='text-2xl'>ELIMINAR ZOOLÓGICO</h2>
-                <FormZoo action={deleteZoo} title={"Eliminar zoológico"} zoo={zoo} disabled />
+                <FormZoo action={deleteZoo} title={"Eliminar zoológico"} zoo={zoo} animalesIdNombre={animalesIdNombre} disabled />
             </Modal>
 
         </CardZoo>
