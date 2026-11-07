@@ -39,7 +39,7 @@ export const ListZoos = ({ zoos, animalesIdNombre }) => (
     <div>
         <Modal trigger={<Button>NUEVO</Button>}>
             <h2 className='text-2xl'>REGISTRAR ZOOLÓGICO</h2>
-            <FormZoo action={createZoo} title={"Registrar zoológico"} zoo={null} />
+            <FormZoo action={createZoo} title={"Registrar zoológico"} zoo={null} animalesIdNombre={animalesIdNombre} />
         </Modal>
 
         <div className="flex flex-wrap gap-4">
