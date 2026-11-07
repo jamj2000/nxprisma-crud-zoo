@@ -1,9 +1,13 @@
 'use server'
 import prisma from '@/lib/prisma'
+import { cacheTag } from 'next/cache'
 
 
 
 export async function getAnimales() {
+    'use cache'
+    cacheTag('animales')
+
     try {
         const animales = await prisma.animal.findMany({
             include: { zoo: true },
@@ -18,6 +22,9 @@ export async function getAnimales() {
 
 
 export async function getAnimalesIdNombre() {
+    'use cache'
+    cacheTag('animales', 'animales:id-nombre')
+
     try {
         const animales = await prisma.animal.findMany({
             select: {
@@ -36,6 +43,9 @@ export async function getAnimalesIdNombre() {
 
 
 export async function getAnimal(id) {
+    'use cache'
+    cacheTag('animales', `animal:${id}`)
+
     try {
         const animal = await prisma.animal.findUnique({
             where: { id: Number(id) },

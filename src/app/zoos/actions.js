@@ -1,6 +1,6 @@
 'use server'
 import prisma from '@/lib/prisma'
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, updateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 
@@ -32,7 +32,8 @@ export async function createZoo(prevState, formData) {
 
   }
 
-  revalidatePath('/zoos')
+  // revalidatePath('/zoos')
+  updateTag('zoos')
   return { success: 'Operación realizada con éxito' }
 }
 
@@ -63,7 +64,8 @@ export async function updateZoo(prevState, formData) {
     return { error: 'Fallo al realizar la operación' }
   }
 
-  revalidatePath('/zoos')
+  // revalidatePath('/zoos')
+  updateTag('zoos')
   return { success: 'Operación realizada con éxito' }
 
 }
@@ -87,7 +89,7 @@ export async function deleteZoo(prevState, formData) {
     return { error: 'Fallo al realizar la operación' }
   }
 
-
+  updateTag('zoos')
   redirect('/zoos')
 }
 

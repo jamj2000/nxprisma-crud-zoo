@@ -1,6 +1,6 @@
 'use server'
 import prisma from '@/lib/prisma'
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, updateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 
@@ -30,7 +30,8 @@ export async function createAnimal(prevState, formData) {
   }
 
 
-  revalidatePath('/animales')
+  // revalidatePath('/animales')
+  updateTag('animales')
   return { success: 'Operación realizada con éxito' }
 
 }
@@ -58,7 +59,8 @@ export async function updateAnimal(prevState, formData) {
   }
 
 
-  revalidatePath('/animales')
+  // revalidatePath('/animales')
+  updateTag('animales')
   return { success: 'Operación realizada con éxito' }
 }
 
@@ -80,6 +82,7 @@ export async function deleteAnimal(prevState, formData) {
     return { error: 'Fallo al realizar la operación' }
   }
 
+  updateTag('animales')
   redirect('/animales')
 }
 
