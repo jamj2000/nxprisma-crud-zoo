@@ -84,7 +84,7 @@ export const FormAnimal = ({ action, title, animal, zoosIdNombre, disabled = fal
     }, [state, formId])
 
     return (
-        <form action={formAction} id={formId}>
+        <form action={formAction} id={formId} key={JSON.stringify(animal)}>
             <input type='hidden' name='id' value={animal?.id} />
 
             <fieldset disabled={disabled} className="flex flex-col py-4">
